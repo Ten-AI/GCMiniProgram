@@ -1,145 +1,165 @@
 <template>
-    <view class="index">
-        <!-- 轮播图视图 swiper-item是每页的元素 -->
-        <view class="swi">
-        	<swiper :indicator-dots="false" :autoplay="true" :interval="5000" :duration="500" circular="true">
-        	    <swiper-item>
-        	         <image class="swpic" src="http://122.51.162.235:8080/static/image/banner1.png" mode="widthFix"></image>
-        	    </swiper-item>
-        	    <swiper-item>
-        	         <image class="swpic" src="http://122.51.162.235:8080/static/image/banner2.png" mode="widthFix"></image>
-        	    </swiper-item>
-        	    <swiper-item>
-        	         <image class="swpic" src="http://122.51.162.235:8080/static/image/banner3.png" mode="widthFix"></image>
-        	    </swiper-item>
-        		<swiper-item>
-        		     <image class="swpic" src="http://122.51.162.235:8080/static/image/banner4.png" mode="widthFix"></image>
-        		</swiper-item>
-        	</swiper>
-        </view>
-		<image class="title" style="width: 100%; height: 80px;" src="http://122.51.162.235:8080/static/image/title.png" mode="aspectFit" ></image>
+	<view class="index">
+		<!-- 轮播图视图 swiper-item是每页的元素 -->
+		<view class="swi">
+			<swiper :indicator-dots="false" :autoplay="true" :interval="5000" :duration="500" circular="true">
+				<swiper-item>
+					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner1.png" mode="widthFix"></image>
+				</swiper-item>
+				<swiper-item>
+					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner2.png" mode="widthFix"></image>
+				</swiper-item>
+				<swiper-item>
+					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner3.png" mode="widthFix"></image>
+				</swiper-item>
+				<swiper-item>
+					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner4.png" mode="widthFix"></image>
+				</swiper-item>
+			</swiper>
+		</view>
+		<image class="title" style="width: 100%; height: 80px;" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title.png"
+		 mode="aspectFit"></image>
 		<view class="search_wrapper">
 			<inputSearch :dataSource="dataSource" @select="handleChange" placeholder="请输入垃圾名称" />
 		</view>
-		<image class="title2" src="../../static/title2.png" mode=""></image>
+		<image class="title2" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title2.png" mode=""></image>
 		<view class="image_wrapper">
-			<image class="camera" @click="camera()" src="http://122.51.162.235:8080/static/image/button.png"></image>
-	</view>
-	<view  class="album" @click="image()" >从相册上传 ></view>
-	<view class="foot">
-		Powered By TenAI
-	</view>
+			<image class="camera" @click="camera()" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button.png"></image>
+		</view>
+		<view class="album" @click="image()">从相册上传 ></view>
+		<view class="foot">
+			Powered by Ten-AI
+		</view>
 	</view>
 </template>
 
 <script>
 	import inputSearch from '../../components/inputSearch/inputSearch.vue'
-    export default {
-        data() {
-        			return {
-        				// dataSource: [],可乐
-        			}
-        		},
+	export default {
+		data() {
+			return {
+				// dataSource: [],可乐
+			}
+		},
 		components: {
-		        inputSearch
-		    },
-        methods: {
-			getSearch(){
+			inputSearch
+		},
+		methods: {
+			getSearch() {
 				var _self = this;
 				uni.request({
-					url:'https://service.xiaoyuan.net.cn/garbage/index/search',
-					method:"GET",
-					data:{
-						kw:_self.searchKey
+					url: 'https://service.xiaoyuan.net.cn/garbage/index/search',
+					method: "GET",
+					data: {
+						kw: _self.searchKey
 					},
-					header:{
-						'content-type':'application/x-www-form-urlencoded',
+					header: {
+						'content-type': 'application/x-www-form-urlencoded',
 					},
-					success:(res) => {
+					success: (res) => {
 						_self.dataSource = res.data.data;
 						console.log(_self.dataSource);
 					}
 				})
 			},
-			handleChange(data){
+			handleChange(data) {
 				console.log(data);
 			},
-			camera:function(){
+			camera: function() {
 				uni.chooseImage({
 					count: 1,
-					sizeType:['original','compressed'],
-					sourceType:['camera'],
-					success:function(res){
-						console.log(JSON.stringify(res.tempFilePaths));
+					sizeType: ['original', 'compressed'],
+					sourceType: ['camera'],
+					success: function(res) {
+						console.log(res)
+						// console.log(JSON.stringify(res.tempFilePaths));
 					}
 				});
 			},
-			image:function(){
+			image: function() {
 				uni.chooseImage({
 					count: 1,
-					sizeType:['original','compressed'],
-					sourceType:['album'],
-					success:function(res){
-						console.log(JSON.stringify(res.tempFilePaths));
+					sizeType: ['original', 'compressed'],
+					sourceType: ['album'],
+					success: function(res) {
+						console.log(res)
+						uni.request({
+							url: res.tempFilePaths[0],
+							method: 'GET',
+							success: (res) => {
+								console.log(res)
+							}
+						})
+						// console.log(JSON.stringify(res.tempFilePaths));
 					}
 				});
 			}
-        }
-    }
+		}
+	}
 </script>
 
 <style lang="scss">
-    .index{
-    		display: flex;
-    		flex-direction: column;
-    		justify-content: flex-start;
-    		align-items: center;
-    		flex-wrap: nowrap;
-    		width: 100vw;
-    		height: 100vh;
-    	}
-		.swi{
-			width: 88%;
-		}
-        swiper{
-    		margin: 50upx 20upx ;
-    		width: 100%;
-        }
-		.swpic{
-			width: 100%;
-		}
-        .title{
-    		top: 340upx;
-    		position: absolute;
-    	}
-		.search_wrapper{
-			margin-top: 120upx;
-			padding: 20upx;
-			width: 480upx;
-		}
-		.image_wrapper{
-			margin-top: 50upx;
-		}
-		.camera{
-			height: 82upx;
-			width: 328upx;
-			top: 100upx;
-		}
-		.album{
-			margin-top: 10upx;	
-			align-content: center;
-			color: #999999;
-			font-size: 28upx;
-		}
-		.title2{
-			margin-top: 20upx;
-			height: 95upx;
-			width: 285upx;
-			
-		}
-		.foot{
-			position: fixed;  
-			bottom: 60upx;
-			color: #999999;
-		}
+	.index {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		flex-wrap: nowrap;
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.swi {
+		width: 88%;
+	}
+
+	swiper {
+		margin: 50upx 20upx;
+		width: 100%;
+	}
+
+	.swpic {
+		width: 100%;
+	}
+
+	.title {
+		top: 340upx;
+		position: absolute;
+	}
+
+	.search_wrapper {
+		margin-top: 120upx;
+		padding: 20upx;
+		width: 480upx;
+	}
+
+	.image_wrapper {
+		margin-top: 50upx;
+	}
+
+	.camera {
+		height: 82upx;
+		width: 328upx;
+		top: 100upx;
+	}
+
+	.album {
+		margin-top: 10upx;
+		align-content: center;
+		color: #999999;
+		font-size: 28upx;
+	}
+
+	.title2 {
+		margin-top: 20upx;
+		height: 95upx;
+		width: 285upx;
+
+	}
+
+	.foot {
+		position: fixed;
+		bottom: 60upx;
+		color: #999999;
+	}
 </style>

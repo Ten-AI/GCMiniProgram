@@ -1,14 +1,14 @@
 <template>
-	<view class='bg' :style="{backgroundImage: 'url(http://122.51.162.235:8080/static/image/'+result.type+'.jpg)'}" >
+	<view class='bg' :style="{backgroundImage: backgroundImageUrl}" >
 		<view class="result">
-				<image class="pic" src="../../static/logo.png" mode=""></image>
+			<image class="pic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button2.png" mode=""></image>
 			<view class="res_name">
-				{{result.name}}&nbsp属于
+				{{name}} 属于
 			</view>
 			<view class="res_feedback">
 				识别不对戳这里>
 			</view>
-				<image class="share_button" src="../../static/button2.png" mode=""></image>
+			<image class="share_button" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button2.png" mode=""></image>
 			<view class="foot">
 				识别结果仅供参考，具体分类请以当地主管部门相关规定为准
 			</view>
@@ -18,27 +18,33 @@
 
 <script>
 	export default {
-		data(){
-			return{
-				result:[]
+		data() {
+			return {
+				t: 1,
+				name: ''
 			}
 		},
 		onLoad() {
 			this.getBg();
 		},
-		methods:{
-			getBg(){
+		methods: {
+			getBg() {
 				var _self = this;
 				uni.request({
-					url:'https://service.xiaoyuan.net.cn/garbage/index/search?kw=可乐瓶子',
-					header:{
-						'content-type':'application/x-www-form-urlencoded',
+					url: 'https://service.xiaoyuan.net.cn/garbage/index/search?kw=可乐瓶子',
+					header: {
+						'content-type': 'application/x-www-form-urlencoded',
 					},
-					success:(res) => {
-						_self.result = res.data.data[0];
-						console.log(_self.result.type);
+					success: (res) => {
+						_self.t = res.data.data[0].type;
+						_self.name = res.data.data[0].name;
 					}
 				})
+			}
+		},
+		computed: {
+			backgroundImageUrl() {
+				return "url(http://qiniu.ncucoder.com/" + this.t + ".jpg)"
 			}
 		}
 	}
@@ -51,50 +57,56 @@
 		top:0;
 		left:0; */
 		position: absolute;
-		width:100%;
-		height:70%;
+		width: 100%;
+		height: 70%;
 		background-size: cover;
 		z-index: -1;
-	} 
-	.result{
+	}
+
+	.result {
 		display: flex;
 		flex-direction: column;
-	    justify-content: flex-start;
+		justify-content: flex-start;
 		align-items: center;
 		flex-wrap: nowrap;
 		width: 100vw;
 		height: 100vh;
 	}
-	.pic{
-		top: 20rpx;
+
+	.pic {
+		top: 20upx;
 		position: absolute;
-		width: 150rpx;
-		height: 150rpx;
-		border-radius: 10rpx;
+		width: 150upx;
+		height: 150upx;
+		border-radius: 10upx;
 		/* border:solid #FF0000; */
 	}
-	.res_name{
+
+	.res_name {
 		position: absolute;
 		color: #FFFFFF;
-		font-size: 50rpx;
-		margin: 195rpx auto;
+		font-size: 50upx;
+		margin: 195upx auto;
 		align-content: center;
 	}
-	.res_feedback{
-		top: 770rpx;
+
+	.res_feedback {
+		top: 770upx;
 		position: absolute;
 		color: #FFFFFF;
-		font-size: 25rpx;
+		font-size: 25upx;
 	}
-	.share_button{
-		top: 900rpx;
+
+	.share_button {
+		top: 900upx;
 		position: absolute;
-		height: 90rpx;
+		height: 90upx;
 	}
-	.foot{
+
+	.foot {
 		position: absolute;
-		top: 1160rpx;
-		font-size: 20rpx;
-		color:  #999999;
+		top: 1160upx;
+		font-size: 20upx;
+		color: #999999;
 	}
 </style>
