@@ -52,7 +52,7 @@
 
 <style>
 	.bg {
-		top: 0;
+		top: 80upx;
 		/* position:relative;
 		top:0;
 		left:0; */
@@ -74,7 +74,7 @@
 	}
 
 	.pic {
-		top: 20upx;
+		top: 7upx;
 		position: absolute;
 		width: 150upx;
 		height: 150upx;
@@ -86,7 +86,7 @@
 		position: absolute;
 		color: #FFFFFF;
 		font-size: 50upx;
-		margin: 195upx auto;
+		margin: 170upx auto;
 		align-content: center;
 	}
 
@@ -98,14 +98,14 @@
 	}
 
 	.share_button {
-		top: 900upx;
+		top: 1000upx;
 		position: absolute;
 		height: 90upx;
 	}
 
 	.foot {
-		position: absolute;
-		top: 1160upx;
+		position: fixed;
+		bottom: 60upx;
 		font-size: 20upx;
 		color: #999999;
 	}

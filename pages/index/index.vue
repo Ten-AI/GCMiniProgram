@@ -110,11 +110,12 @@
 	}
 
 	.swi {
-		width: 88%;
+		width: 83%;
+		margin: 50upx 30upx;
 	}
 
 	swiper {
-		margin: 50upx 20upx;
+		
 		width: 100%;
 	}
 
