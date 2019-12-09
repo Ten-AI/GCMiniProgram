@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "垃圾分类小程序",
-  "usingComponents": {
-    "input-search": "/components/inputSearch/inputSearch"
-  }
-}
