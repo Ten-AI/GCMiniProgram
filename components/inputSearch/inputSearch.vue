@@ -19,9 +19,11 @@
 	 
 	 -->
 	<view class="input-group">
-		<input :placeholder="placeholder" @input="search" @blur="hideList" v-model="name" />
-		<view class="ul">
-			<view class="li" v-for="(item,index) in list" :key="index" @tap="select(item)">{{item.name}}</view>
+		<input :placeholder="placeholder" @input="search"  v-model="name" />
+		<view class="ul" v-if="list.length > 0">
+			<view class="li" v-for="(item,index) in list" :key="index" @tap="select(item)">{{item.key}}
+			<view class="mini-btn">{{item.type}}</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -41,8 +43,7 @@
 		data() {
 			return {
 				list: [],
-				name: '',
-				backName: ''
+				showControl:false
 			};
 		},
 		destroyed() {
@@ -51,33 +52,27 @@
 		methods: {
 			search(e) {
 				let val = e.detail.value;
-				let {
-					dataSource
-				} = this;
-				let arr = [];
-				for (let i = 0; i < dataSource.length; i++) {
-					if (dataSource[i].name.indexOf(val) !== -1) {
-						arr.push(dataSource[i]);
-					}
-				}
-				// console.log(arr)
-				if (!val) {
-					this.list = [];
+				if(val){
+					uni.request({
+						url:'https://www.98api.cn/api/rubbish.php',
+						method:"GET",
+						data:{
+							kw:val
+						},
+						header:{
+							'content-type':'application/x-www-form-urlencoded',
+						},
+						success:(res) => {
+							console.log(res)
+							let dataSource = res.data;
+							console.log("成功后",dataSource);
+							// console.log(dataSource.length);
+							this.list = dataSource;
+						}
+					});	
 				} else {
-					this.list = arr;
+					this.list = [];
 				}
-
-			},
-			select(item) {
-				this.backName = item.name;
-				this.list = [];
-				this.$emit('select', item);
-			},
-			hideList() {
-				this.list = [];
-				this.t = setTimeout(() => {
-					this.name = this.backName;
-				}, 0);
 			}
 		}
 	}
@@ -99,16 +94,32 @@
 		}
 
 		.ul {
+			display: block;
+			border: 1upx solid #C0C0C0;
+			border-radius: 25upx;
 			position: absolute;
+			margin-top: 5upx;
+			margin-left: 5upx;
 			left: 0;
 			top: 100%;
 			width: 100%;
-			background: #eaeaea;
+			background:  #FFFFFF;
 
 			.li {
-				border-bottom: 1upx solid gray;
 				line-height: 60upx;
+				margin: 20upx 15upx;
+				
+				.mini-btn{
+				float: right;
+				display: inline-block;
+				text-align: center;
+				color: #FFFFFF;
+				background-color: #007AFF;
+				border : 1upx solid #007AFF;
+				border-radius: 10upx;
+				}
 			}
+				
 		}
 	}
 </style>

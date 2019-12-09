@@ -170,21 +170,33 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
-      dataSource: [{
-        id: 1,
-        name: '耐克1' },
-
-      {
-        id: 2,
-        name: '耐克2' }] };
-
-
-
+      // dataSource: [],可乐
+    };
   },
   components: {
     inputSearch: inputSearch },
 
   methods: {
+    getSearch: function getSearch() {
+      var _self = this;
+      uni.request({
+        url: 'https://service.xiaoyuan.net.cn/garbage/index/search',
+        method: "GET",
+        data: {
+          kw: _self.searchKey },
+
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' },
+
+        success: function success(res) {
+          _self.dataSource = res.data.data;
+          console.log(_self.dataSource);
+        } });
+
+    },
+    handleChange: function handleChange(data) {
+      console.log(data);
+    },
     camera: function camera() {
       uni.chooseImage({
         count: 1,

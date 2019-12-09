@@ -13,6 +13,5 @@
   },
   "usingComponents": {
     "input-search": "/components/inputSearch/inputSearch"
-  },
-  "sitemapLocation": "sitemap39.json"
+  }
 }

@@ -37,14 +37,28 @@
             box-sizing: border-box;
 }
 .input-group .ul {
+    display: block;
+    border: 1rpx solid #C0C0C0;
+    border-radius: 25rpx;
     position: absolute;
+    margin-top: 5rpx;
+    margin-left: 5rpx;
     left: 0;
     top: 100%;
     width: 100%;
-    background: #eaeaea;
+    background: #FFFFFF;
 }
 .input-group .ul .li {
-      border-bottom: 1rpx solid gray;
       line-height: 60rpx;
+      margin: 20rpx 15rpx;
+}
+.input-group .ul .li .mini-btn {
+        float: right;
+        display: inline-block;
+        text-align: center;
+        color: #FFFFFF;
+        background-color: #007AFF;
+        border: 1rpx solid #007AFF;
+        border-radius: 10rpx;
 }
 

@@ -105,7 +105,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
 //
 //
 //
@@ -148,44 +150,38 @@ var _default2 =
   data: function data() {
     return {
       list: [],
-      name: '',
-      backName: '' };
+      showControl: false };
 
   },
   destroyed: function destroyed() {
     clearTimeout(this.t);
   },
   methods: {
-    search: function search(e) {
-      var val = e.detail.value;var
+    search: function search(e) {var _this = this;
+      var val = e.detail.value;
+      if (val) {
+        uni.request({
+          url: 'https://www.98api.cn/api/rubbish.php',
+          method: "GET",
+          data: {
+            kw: val },
 
-      dataSource =
-      this.dataSource;
-      var arr = [];
-      for (var i = 0; i < dataSource.length; i++) {
-        if (dataSource[i].name.indexOf(val) !== -1) {
-          arr.push(dataSource[i]);
-        }
-      }
-      // console.log(arr)
-      if (!val) {
-        this.list = [];
+          header: {
+            'content-type': 'application/x-www-form-urlencoded' },
+
+          success: function success(res) {
+            console.log(res);
+            var dataSource = res.data;
+            console.log("成功后", dataSource);
+            // console.log(dataSource.length);
+            _this.list = dataSource;
+          } });
+
       } else {
-        this.list = arr;
+        this.list = [];
       }
-
-    },
-    select: function select(item) {
-      this.backName = item.name;
-      this.list = [];
-      this.$emit('select', item);
-    },
-    hideList: function hideList() {var _this = this;
-      this.list = [];
-      this.t = setTimeout(function () {
-        _this.name = _this.backName;
-      }, 0);
     } } };exports.default = _default2;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

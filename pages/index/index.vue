@@ -37,21 +37,33 @@
     export default {
         data() {
         			return {
-        				dataSource: [{
-        						id: 1,
-        						name: '耐克1'
-        					},
-        					{
-        						id: 2,
-        						name: '耐克2'
-        					}
-        				],
-        			};
+        				// dataSource: [],可乐
+        			}
         		},
 		components: {
 		        inputSearch
 		    },
         methods: {
+			getSearch(){
+				var _self = this;
+				uni.request({
+					url:'https://service.xiaoyuan.net.cn/garbage/index/search',
+					method:"GET",
+					data:{
+						kw:_self.searchKey
+					},
+					header:{
+						'content-type':'application/x-www-form-urlencoded',
+					},
+					success:(res) => {
+						_self.dataSource = res.data.data;
+						console.log(_self.dataSource);
+					}
+				})
+			},
+			handleChange(data){
+				console.log(data);
+			},
 			camera:function(){
 				uni.chooseImage({
 					count: 1,
