@@ -5,7 +5,7 @@
 				<view class="box">
 					<view class="box-hd">
 						<view class="avator">
-							<img src="../../static/user/face.jpg">
+							<img src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/face.jpg">
 						</view>
 						<view class="phone-number" @click="login">点击登录</view>
 					</view>
@@ -29,30 +29,39 @@
 		<view class="list-content">
 			<view class="list">
 				<view class="li noborder" >
-					<view class="icon"><image src="../../static/user/card.png"></image></view>
+					<view class="icon"><image src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/card.png"></image></view>
 					<view class="text">
-						<navigator url="../Profile/Profile" open-type="redirect" hover-class="other-navigator-hover">个人资料</navigator>
+						<navigator url="../Profile/Profile">个人资料</navigator>
 						</view>
-					<image class="to" src="../../static/user/to.png"></image>
+					<image class="to" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/to.png"></image>
 				</view>
 			</view>
 			<view class="list">
 				<view class="li " >
-					<view class="icon"><image src="../../static/user/help.png"></image></view>
-					<view class="text">帮助中心</view>
-					<image class="to" src="../../static/user/to.png"></image>
+					<view class="icon"><image src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/help.png"></image></view>
+					<view class="text">
+						<navigator url="../help/help">帮助中心</navigator>
+					</view>
+					<image class="to" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/to.png"></image>
 				</view>
 				<view class="li " >
-					<view class="icon"><image src="../../static/user/about.png"></image></view>
-					<view class="text">关于我们</view>
-					<image class="to" src="../../static/user/to.png"></image>
+					<view class="icon"><image src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/about.png"></image></view>
+					<view class="text">
+						<navigator url="../about/about">关于我们</navigator>
+					</view>
+					<image class="to" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/to.png"></image>
 				</view>
 				<view class="li " >
-					<view class="icon"><image src="../../static/user/opinion.png"></image></view>
-					<view class="text">意见反馈</view>
-					<image class="to" src="../../static/user/to.png"></image>
+					<view class="icon"><image src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/opinion.png"></image></view>
+					<view class="text">
+						<navigator url="../feedback/feedback">意见反馈</navigator>
+						</view>
+					<image class="to" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/to.png"></image>
 				</view>
 			</view>
+		</view>
+		<view class="foot">
+			Powered by Ten-AI
 		</view>
 	</view>
 </template>
@@ -209,5 +218,12 @@ page{
 			height:40upx;
 		}
 	}
+}
+.foot {
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	bottom: 60upx;
+	color: #999999;
 }
 </style>

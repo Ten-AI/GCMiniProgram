@@ -30,6 +30,24 @@
 				"navigationBarTitleText": "个人资料"
 			}
         }
+        ,{
+            "path" : "pages/help/help",
+            "style" : {
+				"navigationBarTitleText": "帮助"
+			}
+        }
+        ,{
+            "path" : "pages/about/about",
+            "style" : {
+				"navigationBarTitleText": "关于我们"
+			}
+        },
+		{
+		    "path" : "pages/feedback/feedback",
+		    "style" : {
+				"navigationBarTitleText": "问题反馈"
+			}
+		}
     ],
 	"tabBar":{
 		"color":"#707070",

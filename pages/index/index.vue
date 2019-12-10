@@ -20,16 +20,13 @@
 		<image class="title" style="width: 100%; height: 80px;" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title.png"
 		 mode="aspectFit"></image>
 		<view class="search_wrapper">
-			<inputSearch :dataSource="dataSource" @select="handleChange" placeholder="请输入垃圾名称" />
+			<inputSearch :dataSource="dataSource" @select="handleChange" placeholder="请输入垃圾名称搜索" />
 		</view>
 		<image class="title2" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title2.png" mode=""></image>
 		<view class="image_wrapper">
 			<image class="camera" @click="camera()" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button.png"></image>
 		</view>
 		<view class="album" @click="image()">从相册上传 ></view>
-		<view class="foot">
-			Powered by Ten-AI
-		</view>
 	</view>
 </template>
 
@@ -110,13 +107,13 @@
 	}
 
 	.swi {
-		width: 83%;
+		width: 77%;
 		margin: 50upx 30upx;
 	}
 
 	swiper {
 		
-		width: 100%;
+		width: 99%;
 	}
 
 	.swpic {
@@ -158,9 +155,5 @@
 
 	}
 
-	.foot {
-		position: fixed;
-		bottom: 60upx;
-		color: #999999;
-	}
+
 </style>

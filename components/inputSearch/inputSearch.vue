@@ -21,7 +21,7 @@
 	<view class="input-group">
 		<input :placeholder="placeholder" @input="search"  v-model="name" />
 		<view class="ul" v-if="list.length > 0">
-			<view class="li" v-for="(item,index) in list" :key="index" @tap="select(item)">{{item.key}}
+			<view class="li" v-for="(item,index) in list" :key="index" >{{item.key}}
 			<view class="mini-btn">{{item.type}}</view>
 			</view>
 		</view>

@@ -103,7 +103,7 @@
 <style>
 	@font-face {
 	  font-family: 'iconfont';
-	  src: url('../../static/andy-adcell/andy-adcell.ttf') format('truetype');
+	  src: url('../../static/andy-adcell.ttf') format('truetype');
 	}
 	
 	.iconfont {
