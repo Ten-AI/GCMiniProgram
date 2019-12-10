@@ -17,8 +17,40 @@
 			"style": {
 				"navigationBarTitleText": "糟糕！出问题了"
 			}
-		}
-	],
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+	    {
+            "path" : "pages/Profile/Profile",
+            "style" : {
+				"navigationBarTitleText": "个人资料"
+			}
+        }
+    ],
+	"tabBar":{
+		"color":"#707070",
+		"selectedColor":"#1296db",
+		"borderStyle":"black",
+		"backgroundColor":"#FFFFFF",
+		"list":[
+			{
+				"pagePath":"pages/index/index",
+				"text":"分类识别",
+				"iconPath":"/static/index.png",
+				"selectedIconPath":"/static/index-touch.png"
+			},
+			{
+				"pagePath":"pages/user/user",
+				"text":"个人中心",
+				"iconPath":"/static/user.png",
+				"selectedIconPath":"/static/user-touch.png"
+			}
+		]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "垃圾分类小程序",
