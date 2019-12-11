@@ -5,21 +5,25 @@
 				<view class="box">
 					<view class="box-hd">
 						<view class="avator">
-							<img src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/face.jpg">
+							<img v-if='user.avatarUrl' :src="user.avatarUrl" alt="">
+							<img v-else src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/face.jpg">
 						</view>
-						<view class="phone-number" @click="login">点击登录</view>
+						<view class="phone-number" >
+							<view v-if="user.nickName" class="phone-number" >{{user.nickName}}</view>
+							<button v-else class="login" type="primary" @click="login" open-type="getUserInfo">点击登录</button>
+							</view>
 					</view>
 					<view class="box-bd">
 						<view class="item">
-							<view class="icon">{{classification}}</view>
+							<view class="icon">{{user.classificate}}</view>
 							<view class="text">识别次数</view>
 						</view>
 						<view class="item">
-							<view class="icon">{{score}}</view>
+							<view class="icon">{{user.score}}</view>
 							<view class="text">我的积分</view>
 						</view>
 						<view class="item">
-							<view class="icon">{{share}}</view>
+							<view class="icon">{{user.share}}</view>
 							<view class="text">分享次数</view>
 						</view>
 					</view>
@@ -69,35 +73,68 @@
 	export default {
 		data() {
 			return {
-				classification:0,
-				score:0,
-				share:0
+				user:{
+					avatarUrl:'',
+					nickName:'',
+					gender:'',
+					province:'',
+					city:'',
+					classificate:9999,
+					score:9999,
+					share:9999
+				}
 			};
 		},
 		onLoad() {
 		},
 		methods: {
-			changeSkin(){
-				uni.navigateTo({
-						url: '../skin-change/skin-change'
-				});
-			},
 			login(){
+				const _self = this;
+				// uni.showLoading({
+				// 		mask:true,
+				// 		title: '正在登录···',
+				// 		complete:()=>{
+				// 			if(this.nickName){
+				// 			 uni.hideLoading();								
+				// 			}
+				// 		}
+				// 	});
 				uni.login({
 				  provider: 'weixin',
 				  success: function (loginRes) {
-				    console.log('用户授权信息：' +loginRes.authResult);
+				    let js_code=loginRes.code;//js_code可以给后台获取unionID或openID作为用户标识
 				    // 获取用户信息
 				    uni.getUserInfo({
 				      provider: 'weixin',
-				      success: function (infoRes) {
-				        console.log('用户昵称为：' + infoRes.userInfo.nickName);
+				      success: function (Res) {
+						var userInfo = Res.userInfo;
+						console.log(Res);
+				        console.log('用户昵称为：' + userInfo.nickName);
+						console.log('用户头像URL为：' + userInfo.avatarUrl);
+						_self.user.nickName = userInfo.nickName;
+						_self.user.avatarUrl = userInfo.avatarUrl;
+						_self.user.gender = userInfo.gender;
+						_self.user.province = userInfo.province;
+						_self.user.city = userInfo.city;
 				      }
 				    });
 				  }
 				});
-			}	
-		}
+			},
+			onGotUserInfo: function (e) {
+			    console.log(e.detail.errMsg)
+			    console.log(e.detail.userInfo)
+			    console.log(e.detail.rawData)
+			  }
+		},
+		// computed:{
+		// 	let _this = this;
+		// 	setValue:function(){
+		// 		var avatarUrl = _this.infoRes.userInfo.avatarUrl;
+		// 		var nickName = _this.infoRes.userInfo.nickName;
+		// 		return avatarUrl,nickName;
+		// 	}
+		// }
 	}
 </script>
 
@@ -119,7 +156,7 @@ page{
 }
 .box{
 	width: 650upx;
-	height: 280upx;
+	height: 300upx;
 	border-radius: 20upx;
 	margin: 0 auto;
 	background: #fff;
@@ -130,12 +167,13 @@ page{
 		flex-direction: row;
 		justify-content: center;
 		.avator{
-			width: 160upx;
-			height: 160upx;
+			width: 140upx;
+			height: 140upx;
 			background: #fff;
 			border: 5upx solid #fff;
 			border-radius: 50%;
 			margin-top: -80upx;
+			margin-bottom: 15upx;
 			overflow: hidden;
 			img{
 				width: 100%;
@@ -145,6 +183,13 @@ page{
 		.phone-number{
 			width: 100%;
 			text-align: center;
+			top: 5upx;
+			
+			.login{
+				width: 30%;
+				height: 80%;
+				background-color: #1296db;
+			}
 		}
 	}
 	.box-bd{
@@ -159,7 +204,7 @@ page{
 			flex-direction: row;
 			justify-content: center;
 			border-right: 1px solid #f1f1f1;
-			margin: 15upx 0;
+			margin: 10upx 0;
 			&:last-child{
 				border: none;
 			}

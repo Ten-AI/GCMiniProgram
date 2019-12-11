@@ -19,22 +19,22 @@
 		</vrow>
 		<vrow class="row" align="center">
 			<vcol span="75"><view class="col">
-				<list text="功能介绍" class="list"></list>
+				<navigator class="list" url="../funcIntro/funcIntro"><list text="功能介绍" ></list></navigator>
 			</view></vcol>
 		</vrow>
 		<vrow class="row" align="center">
 			<vcol span="75"><view class="col">
-				<list text="团队介绍" class="list"></list>
+				<navigator class="list" url="../teamIntro/teamIntro"><list text="团队介绍" ></list></navigator>
 			</view></vcol>
 		</vrow>
 		<vrow class="row" align="center">
 			<vcol span="75"><view class="col">
-				<list text="郑重鸣谢" class="list"></list>
+				<navigator url="../thanks/thanks" class="list"><list text="郑重鸣谢"></list></navigator>
 			</view></vcol>
 		</vrow>
 		<view class="foot">
 				<view>Ten-AI团队 版权所有</view>
-				<view>Copyright&copy;2019 TA All Rights Reserved.</view>
+				<view>Copyright&copy;2019 T.A. All Rights Reserved.</view>
 				<view></view>
 		</view>
 		

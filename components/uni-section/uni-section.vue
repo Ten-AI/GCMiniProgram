@@ -71,7 +71,7 @@
 
 	.line {
 		height: 15px;
-		background-color: $uni-text-color-disable;
+		background-color: #1296db;
 		border-radius: 5px;
 		width: 3px;
 	}

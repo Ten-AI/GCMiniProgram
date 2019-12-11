@@ -48,6 +48,20 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
+        ,{
+            "path" : "pages/funcIntro/funcIntro",
+            "style" : {
+				"navigationBarTitleText": "版本更新"
+			}
+        }
+        ,{
+            "path" : "pages/teamIntro/teamIntro",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/thanks/thanks",
+            "style" : {}
+        }
     ],
 	"tabBar":{
 		"color":"#707070",
