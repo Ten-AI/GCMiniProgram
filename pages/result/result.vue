@@ -1,7 +1,7 @@
 <template>
 	<view class='bg' :style="{backgroundImage: backgroundImageUrl}" >
 		<view class="result">
-			<image class="pic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button2.png" mode=""></image>
+			<image class="pic" :src="uploadImage" mode=""></image>
 			<view class="res_name">
 				{{name}} 属于
 			</view>
@@ -21,26 +21,29 @@
 		data() {
 			return {
 				t: 1,
-				name: ''
+				name: '',
+				uploadImage: ''
 			}
 		},
-		onLoad() {
-			this.getBg();
+		onLoad(option) {
+			this.t = option.t
+			this.name = option.name
+			this.uploadImage = option.uploadImage
 		},
 		methods: {
-			getBg() {
-				var _self = this;
-				uni.request({
-					url: 'https://service.xiaoyuan.net.cn/garbage/index/search?kw=可乐瓶子',
-					header: {
-						'content-type': 'application/x-www-form-urlencoded',
-					},
-					success: (res) => {
-						_self.t = res.data.data[0].type;
-						_self.name = res.data.data[0].name;
-					}
-				})
-			}
+			// getBg() {
+			// 	var _self = this;
+			// 	uni.request({
+			// 		url: 'https://service.xiaoyuan.net.cn/garbage/index/search?kw=可乐瓶子',
+			// 		header: {
+			// 			'content-type': 'application/x-www-form-urlencoded',
+			// 		},
+			// 		success: (res) => {
+			// 			_self.t = res.data.data[0].type;
+			// 			_self.name = res.data.data[0].name;
+			// 		}
+			// 	})
+			// }
 		},
 		computed: {
 			backgroundImageUrl() {

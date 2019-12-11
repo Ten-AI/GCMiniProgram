@@ -42,6 +42,25 @@
 			inputSearch
 		},
 		methods: {
+			garbageClassify(fp) {
+				uni.uploadFile({
+					url: 'https://gc.ncucoder.com/garbage/',
+					filePath: fp,
+					name: 'image',
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes)
+						const data = JSON.parse(uploadFileRes.data)
+						if (data.code === 200 || data.code === 404) {
+							uni.navigateTo({
+								url: '../result/result?name=' + data.name + '&t=' + data.kind + '&uploadImage=' + data.image_url
+							})
+						} else {
+							console.log(data.content)
+						}
+						
+					}
+				});
+			},
 			getSearch() {
 				var _self = this;
 				uni.request({
@@ -63,31 +82,26 @@
 				console.log(data);
 			},
 			camera: function() {
+				const _self = this
 				uni.chooseImage({
 					count: 1,
 					sizeType: ['original', 'compressed'],
 					sourceType: ['camera'],
 					success: function(res) {
-						console.log(res)
-						// console.log(JSON.stringify(res.tempFilePaths));
+						// console.log(res)
+						_self.garbageClassify(res.tempFilePaths[0])
 					}
 				});
 			},
 			image: function() {
+				const _self = this
 				uni.chooseImage({
 					count: 1,
 					sizeType: ['original', 'compressed'],
 					sourceType: ['album'],
 					success: function(res) {
-						console.log(res)
-						uni.request({
-							url: res.tempFilePaths[0],
-							method: 'GET',
-							success: (res) => {
-								console.log(res)
-							}
-						})
-						// console.log(JSON.stringify(res.tempFilePaths));
+						// console.log(res)
+						_self.garbageClassify(res.tempFilePaths[0])
 					}
 				});
 			}
@@ -112,7 +126,7 @@
 	}
 
 	swiper {
-		
+
 		width: 99%;
 	}
 
@@ -154,6 +168,4 @@
 		width: 285upx;
 
 	}
-
-
 </style>
