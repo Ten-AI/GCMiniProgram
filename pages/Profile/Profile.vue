@@ -2,14 +2,14 @@
 	<view>
 		<profileList text="头像" showArrow="false">
 			<view class="icon">
-				<image :src="user.icon"></image>
+				<image :src="user.avatar"></image>
 			</view>
 		</profileList>
 		<profileList text="昵称" :detail = "user.nickName"></profileList>
 		<profileList text="性别" :detail="user.gender"></profileList>
-		<profileList text="地址" :detail="user.address"></profileList>
-		<profileList text="电子邮箱" :detail="user.email"></profileList>
-		<profileList text="个性签名" :detail="user.motto"></profileList>
+		<profileList text="地址" :detail="user.province+user.city"></profileList>
+		<profileList text="电子邮箱"></profileList>
+		<profileList text="个性签名"></profileList>
 	</view>
 </template>
 
@@ -19,10 +19,11 @@ export default {
 	data() {
 		return {
 			user: {
-				icon:'../../static/logo.png',
+				avatar:'../../static/logo.png',
 				nickName: 'Jack',
 				gender: '男',
-				address: '江西赣州',
+				province: '江西',
+				city:'赣州',
 				email: '1473675314@qq.com',
 				motto: '江东子弟多才俊，卷土重来未可知。'
 			}

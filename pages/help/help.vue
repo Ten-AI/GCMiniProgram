@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<uni-section title="关于图片识别机制" type="line"></uni-section>
-		<uni-notice-bar showIcon="true" text="本小程序图片识别部分采用深度学习算法,自主训练模型,非调用API实现"></uni-notice-bar>
+		<uni-section title="关于软件使用Tips" type="line"></uni-section>
+		<uni-notice-bar  text="在使用图片识别分类功能时,为了提升识别准确率,请确保识别主体背景通透,不包含杂物."></uni-notice-bar>
 	</view>
 </template>
 

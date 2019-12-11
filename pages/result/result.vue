@@ -8,7 +8,7 @@
 			<view class="res_feedback">
 				识别不对戳这里>
 			</view>
-			<image class="share_button" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button2.png" mode=""></image>
+			<!-- <image class="share_button" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button2.png"></image> -->
 			<view class="foot">
 				识别结果仅供参考，具体分类请以当地主管部门相关规定为准
 			</view>
@@ -40,7 +40,7 @@
 						_self.name = res.data.data[0].name;
 					}
 				})
-			}
+			},
 		},
 		computed: {
 			backgroundImageUrl() {
@@ -52,10 +52,6 @@
 
 <style>
 	.bg {
-		top: 80upx;
-		/* position:relative;
-		top:0;
-		left:0; */
 		position: absolute;
 		width: 100%;
 		height: 70%;
@@ -98,8 +94,8 @@
 	}
 
 	.share_button {
-		top: 1000upx;
-		position: absolute;
+		bottom: 180upx;
+		position: fixed;
 		height: 90upx;
 	}
 
