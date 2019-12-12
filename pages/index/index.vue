@@ -35,7 +35,7 @@
 	export default {
 		data() {
 			return {
-				// dataSource: [],可乐
+				baseApi: 'https://gc.ncucoder.com/garbage/'
 			}
 		},
 		components: {
@@ -44,11 +44,11 @@
 		methods: {
 			garbageClassify(fp) {
 				uni.uploadFile({
-					url: 'https://gc.ncucoder.com/garbage/',
+					url: this.baseApi,
 					filePath: fp,
 					name: 'image',
 					success: (uploadFileRes) => {
-						console.log(uploadFileRes)
+						// console.log(uploadFileRes)
 						const data = JSON.parse(uploadFileRes.data)
 						if (data.code === 200 || data.code === 404) {
 							uni.navigateTo({
@@ -57,7 +57,7 @@
 						} else {
 							console.log(data.content)
 						}
-						
+						uni.hideLoading()
 					}
 				});
 			},
@@ -74,7 +74,7 @@
 					},
 					success: (res) => {
 						_self.dataSource = res.data.data;
-						console.log(_self.dataSource);
+						// console.log(_self.dataSource);
 					}
 				})
 			},
@@ -89,6 +89,9 @@
 					sourceType: ['camera'],
 					success: function(res) {
 						// console.log(res)
+						uni.showLoading({
+							title: '识别中'
+						})
 						_self.garbageClassify(res.tempFilePaths[0])
 					}
 				});
@@ -101,6 +104,9 @@
 					sourceType: ['album'],
 					success: function(res) {
 						// console.log(res)
+						uni.showLoading({
+							title: '识别中'
+						})
 						_self.garbageClassify(res.tempFilePaths[0])
 					}
 				});
