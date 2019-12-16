@@ -20,7 +20,7 @@
 		<image class="title" style="width: 100%; height: 80px;" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title.png"
 		 mode="aspectFit"></image>
 		<view class="search_wrapper">
-			<inputSearch :dataSource="dataSource" @select="handleChange" placeholder="请输入垃圾名称搜索" />
+			<navigator url="../search/search"><inputSearch  placeholder="请输入垃圾名称搜索" /></navigator>
 		</view>
 		<image class="title2" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title2.png" mode=""></image>
 		<view class="image_wrapper">

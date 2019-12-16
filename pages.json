@@ -56,12 +56,22 @@
         }
         ,{
             "path" : "pages/teamIntro/teamIntro",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "团队介绍"
+			}
         }
         ,{
             "path" : "pages/thanks/thanks",
-            "style" : {}
-        }
+            "style" : {
+				"navigationBarTitleText": "特别鸣谢"
+			}
+        },
+		{
+		    "path" : "pages/search/search",
+		    "style" : {
+				"navigationBarTitleText": "搜索分类"
+			}
+		}
     ],
 	"tabBar":{
 		"color":"#707070",

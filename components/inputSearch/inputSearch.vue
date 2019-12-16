@@ -1,30 +1,11 @@
 <template>
-	<!--
-	<inputSearch :dataSource="dataSource" @select="handleChange" placeholder="请输入商品名称" />
-	//数据源
-	dataSource: [{
-			id: 1,
-			name: '耐克1'
-		},
-		{
-			id: 2,
-			name: '耐克2'
-		}
-	],
-	 
-	 //用户点击获取的数据
-	 handleChange(data) {
-	 	console.log(data)
-	 }
-	 
-	 -->
 	<view class="input-group">
-		<input :placeholder="placeholder" @input="search"  v-model="name" />
-		<view class="ul" v-if="list.length > 0">
+		<input :placeholder="placeholder"/>
+		<!-- <view class="ul" v-if="list.length > 0">
 			<view class="li" v-for="(item,index) in list" :key="index" >{{item.key}}
 			<view class="mini-btn">{{item.type}}</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -32,48 +13,45 @@
 	export default {
 		props: {
 			placeholder: String, //默认提示
-			searchKey: String, //模糊搜索的key值
-			dataSource: {
-				type: Array,
-				default: function() { //数据源
-					return [];
-				}
-			}
+			// searchKey: String, //模糊搜索的key值
+			// dataSource: {
+			// 	type: Array,
+			// 	default: function() { //数据源
+			// 		return [];
+			// 	}
+			// }
 		},
 		data() {
 			return {
-				list: [],
-				showControl:false
+				// list: [],
+				// showControl:false
 			};
 		},
-		destroyed() {
-			clearTimeout(this.t);
-		},
 		methods: {
-			search(e) {
-				let val = e.detail.value;
-				if(val){
-					uni.request({
-						url:'https://www.98api.cn/api/rubbish.php',
-						method:"GET",
-						data:{
-							kw:val
-						},
-						header:{
-							'content-type':'application/x-www-form-urlencoded',
-						},
-						success:(res) => {
-							console.log(res)
-							let dataSource = res.data;
-							console.log("成功后",dataSource);
-							// console.log(dataSource.length);
-							this.list = dataSource;
-						}
-					});	
-				} else {
-					this.list = [];
-				}
-			}
+			// search(e) {
+			// 	let val = e.detail.value;
+			// 	if(val){
+			// 		uni.request({
+			// 			url:'https://www.98api.cn/api/rubbish.php',
+			// 			method:"GET",
+			// 			data:{
+			// 				kw:val
+			// 			},
+			// 			header:{
+			// 				'content-type':'application/x-www-form-urlencoded',
+			// 			},
+			// 			success:(res) => {
+			// 				console.log(res)
+			// 				let dataSource = res.data;
+			// 				console.log("成功后",dataSource);
+			// 				// console.log(dataSource.length);
+			// 				this.list = dataSource;
+			// 			}
+			// 		});	
+			// 	} else {
+			// 		this.list = [];
+			// 	}
+			// }
 		}
 	}
 </script>
