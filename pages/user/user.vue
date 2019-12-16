@@ -87,9 +87,9 @@
 					gender: '',
 					province: '',
 					city: '',
-					classificate: 99,
-					score: 99,
-					share: 99
+					classify_count: 99,
+					point: 99,
+					share_count: 99
 				}
 			};
 		},
@@ -110,14 +110,22 @@
 					provider: 'weixin',
 					success: function(loginRes) {
 						let js_code = loginRes.code; //js_code可以给后台获取unionID或openID作为用户标识
+						uni.request({
+							url: 'http://localhost:8000/user/code/',
+							method: 'GET',
+							data: {
+								code: js_code
+							},
+							success: (res) => {
+								console.log(res)
+							}
+						})
 						// 获取用户信息
 						uni.getUserInfo({
 							provider: 'weixin',
-							success: function(Res) {
-								var userInfo = Res.userInfo;
-								console.log(Res);
-								console.log('用户昵称为：' + userInfo.nickName);
-								console.log('用户头像URL为：' + userInfo.avatarUrl);
+							success: function(res) {
+								var userInfo = res.userInfo;
+								console.log(res);
 								_self.user.nickName = userInfo.nickName;
 								_self.user.avatarUrl = userInfo.avatarUrl;
 								_self.user.gender = userInfo.gender;

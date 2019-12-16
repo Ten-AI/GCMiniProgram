@@ -4,27 +4,27 @@
 		<view class="swi">
 			<swiper :indicator-dots="false" :autoplay="true" :interval="5000" :duration="500" circular="true">
 				<swiper-item>
-					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner1.png" mode="widthFix"></image>
+					<image class="swpic" src="http://qiniu.gc.ncucoder.com/banner1.png" mode="widthFix"></image>
 				</swiper-item>
 				<swiper-item>
-					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner2.png" mode="widthFix"></image>
+					<image class="swpic" src="http://qiniu.gc.ncucoder.com/banner2.png" mode="widthFix"></image>
 				</swiper-item>
 				<swiper-item>
-					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner3.png" mode="widthFix"></image>
+					<image class="swpic" src="http://qiniu.gc.ncucoder.com/banner3.png" mode="widthFix"></image>
 				</swiper-item>
 				<swiper-item>
-					<image class="swpic" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/banner4.png" mode="widthFix"></image>
+					<image class="swpic" src="http://qiniu.gc.ncucoder.com/banner4.png" mode="widthFix"></image>
 				</swiper-item>
 			</swiper>
 		</view>
-		<image class="title" style="width: 100%; height: 80px;" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title.png"
+		<image class="title" style="width: 100%; height: 80px;" src="http://qiniu.gc.ncucoder.com/title.png"
 		 mode="aspectFit"></image>
 		<view class="search_wrapper">
 			<navigator url="../search/search"><inputSearch  placeholder="请输入垃圾名称搜索" /></navigator>
 		</view>
-		<image class="title2" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/title2.png" mode=""></image>
+		<image class="title2" src="http://qiniu.gc.ncucoder.com/title2.png" mode=""></image>
 		<view class="image_wrapper">
-			<image class="camera" @click="camera()" src="cloud://gca-thyu2.6763-gca-thyu2-1254459705/button.png"></image>
+			<image class="camera" @click="camera()" src="http://qiniu.gc.ncucoder.com/button.png"></image>
 		</view>
 		<view class="album" @click="image()">从相册上传 ></view>
 	</view>
